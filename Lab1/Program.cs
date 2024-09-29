@@ -290,15 +290,17 @@ public class Program
         int power = 0;
 
         // code here
-        double corn = 1;
-        double total = corn;
-        for (int i = 1; i <= 64; i++)
+        int a = 0;
+        ulong b = 1;
+        while (a < 64)
         {
-            total += corn;
-            corn *= 2;
+            answer += b;
+            b *= 2;
+            a++;
         }
-        answer = (double)total / 15000000000000000000;
-        power = (int)total;
+        answer /= 15;
+        power = 18;
+        answer /= Math.Pow(10, power);
         answer = Math.Round(answer, 2);
         // end
 
