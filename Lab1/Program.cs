@@ -386,13 +386,18 @@ public class Program
         double a = 1.0;
         int n = 1;
         double pow = x * x;
-        while (a > 0.0001)
+        if (x != 1)
         {
-            a *= pow;
-            if (a < 0.0001) break;
-            S += a;
-            n++;
+            while (a > 0.0001)
+            {
+                a *= pow;
+                if (a < 0.0001) break;
+                S += a;
+                n++;
+            }
         }
+        else
+            S = 0;
         answer = S;
         // end
 
@@ -528,24 +533,20 @@ public class Program
         double S = 0, y = 0;
 
         // code here
+        S = 1;
         y = Math.Cos(x);
-        for (int i = 0; i <= 100000; i++)
+        double i = 1;
+        double n1 = -1, n2 = x * x, d = 2;
+        double res = n1 * n2 / d;
+        while (Math.Abs(res) >= 0.0001)
         {
-            double ch1 = (i % 2 == 0) ? 1 : -1;
-            double ch2 = 1;
-            for (int j = 1; j <= 2 * i; j++)
-                ch2 *= x;
-            double ch3 = 1;
-            for (int j = 1; j <= 2 * i; j++)
-                ch3 *= j;
-            double res = (ch1 * ch2) / ch3;
-            if (Math.Abs(res) >= 0.0001)
-                S += res;
-            else
-                break;
+            S += res;
+            i++;
+            n1 *= -1;
+            n2 *= x * x;
+            d *= (2 * i - 1) * (2 * i);
+            res = n1 * n2 / d;
         }
-        S = Math.Round(S, 2);
-        y = Math.Round(y, 2);
         Console.WriteLine($"x={x:f2} S={S:f5} y={y:f5}");
         // end
 
